@@ -34,7 +34,7 @@ class Player:
                 bet= max( self.get_player_bets( game_state))+1
             if len(self.get_community_cards( game_state))>0:
                 if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(game_state)):
-                    bet=max( self.get_player_bets( game_state))+1
+                    bet=self.all_in(game_state);
 
             if is_same_suit:
                 if max(self.get_player_bets(game_state)) > 200:
@@ -121,5 +121,9 @@ class Player:
 
 
 
+    def all_in(self,game_state):
+        for player in game_state['players']:
+            if player['name']=="pokerSmokers":
+                return int(player['stack'])
 
 
