@@ -31,16 +31,15 @@ class Player:
             has_drill = self.has_drill(own_cards, self.get_community_cards(game_state))
             has_full = self.has_full(own_cards, self.get_community_cards(game_state))
             has_hc = self.has_highcard(own_cards)
+
             if has_hc and max(self.get_player_bets(game_state))<150:
                 bet=max(self.get_player_bets(game_state))
 
             if is_pair and has_hc:
                 bet = max( self.get_player_bets( game_state))+200
 
-            if  has_twopair or has_drill or has_full or is_highcard:
-                bet= max( self.get_player_bets( game_state))+1
             if len(self.get_community_cards( game_state))>0:
-                if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(game_state)):
+                if is_pair or has_twopair or has_drill or has_full or is_highcard or has_hc:
                     bet=self.all_in(game_state)
                 elif self.check_if_pair(self.get_own_cards(game_state)):
                     bet=self.all_in(game_state)
