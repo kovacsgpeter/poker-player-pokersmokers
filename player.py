@@ -13,7 +13,7 @@ class Player:
         bets = list()
         for player in game_state['players']:
             try:
-                bets.append(player['bet'])
+                bets.append(int(player['bet']))
                 return bets
             except KeyError:
                 pass
@@ -27,6 +27,7 @@ class Player:
             is_highcard = self.is_highcard( own_cards)
             is_same_suit = self.if_same_suit_in_hands(own_cards)
             if is_pair or is_highcard:
+                print()
                 ##if max(self.get_player_bets( game_state))>200:
                 bet= max( self.get_player_bets( game_state))+1
             if len(self.get_community_cards( game_state))>0:
