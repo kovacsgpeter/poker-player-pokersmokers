@@ -15,7 +15,8 @@ class Player:
             returnVal = 0
             self.own_cards = self.get_own_cards(game_state)
             isPair = Player.check_if_pair(self.own_cards)
-            if isPair:
+            isHighcard = self.is_highcard(self.own_cards)
+            if isPair or isHighcard:
                 returnVal=200
 
 
@@ -32,6 +33,13 @@ class Player:
             return True
         else:
             return False
+
+    def is_highcard(cards):
+        if cards[0]['rank']>9 and cards[1]['rank']>9:
+            return True
+        else:
+            return False
+
 
 
 
