@@ -4,7 +4,7 @@ class Player:
 
     def betRequest(self, game_state):
 
-        if game_state['pot']>100:
+        if game_state['bet']>100:
             return 0
         else:
             return 20
