@@ -1,14 +1,12 @@
 import json
 class Player:
-    VERSION = "kuszoMajom"
+    VERSION = "nem kúszó majom"
     own_cards=[]
 
     def get_own_cards(self, game_state):
         for player in game_state['players']:
             if player['name']=="pokerSmokers":
                 return player['hole_cards']
-            
-
 
     def get_player_bets(self, game_state):
         bets = list()
@@ -21,24 +19,27 @@ class Player:
 
     def betRequest(self, game_state):
 
-
-        returnVal = 0
+        bet = 0
         own_cards = Player.get_own_cards(game_state)
-        isPair = Player.check_if_pair(own_cards)
-        isHighcard = Player.is_highcard(own_cards)
-        if isPair or isHighcard:
+        is_pair = Player.check_if_pair(own_cards)
+        is_highcard = Player.is_highcard(own_cards)
+        is_same_suit = Player.if_same_suit_in_hands(own_cards)
+        if is_pair or is_highcard:
             if max(Player.get_player_bets(game_state))>200:
                 return max( Player.get_player_bets(game_state))+1
             else:
-                returnVal=200
+                bet=200
         if len(Player.get_community_cards())>0:
             if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
-                returnVal=max( Player.get_player_bets(game_state))+1
+                bet=max( Player.get_player_bets(game_state))+1
 
+        if is_same_suit:
+            if max(Player.get_player_bets(game_state)) > 200:
+                return max(Player.get_player_bets(game_state)) + 20
+            else:
+                bet = 500
 
-
-        return returnVal
-
+        return bet
 
     def showdown(self, game_state):
         pass
@@ -61,17 +62,19 @@ class Player:
             cards.append(card)
         return cards
 
-    def check_if_have_pair_incommunity(self,owncards, community_cards):
-        for card in owncards:
+    def check_if_have_pair_incommunity(self, own_cards, community_cards):
+        for card in own_cards:
             if card in community_cards:
                 return True
             else:
                 continue
         return False
 
-
-
-
+    def if_same_suit_in_hands(cards):
+        if cards[0]['suit'] == cards[1]['self']:
+            return True
+        else:
+            return False
 
 
 
