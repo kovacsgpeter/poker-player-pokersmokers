@@ -27,7 +27,7 @@ class Player:
             is_same_suit = Player.if_same_suit_in_hands(self, own_cards)
             if is_pair or is_highcard:
                 if max(Player.get_player_bets(self, game_state))>200:
-                    return max( Player.get_player_bets(self, game_state))+1
+                    bet= max( Player.get_player_bets(self, game_state))+1
                 else:
                     bet=200
             if len(Player.get_community_cards(self, game_state))>0:
@@ -36,7 +36,7 @@ class Player:
 
             if is_same_suit:
                 if max(Player.get_player_bets(self, game_state)) > 200:
-                    return max(Player.get_player_bets(self, game_state)) + 20
+                    bet = max(Player.get_player_bets(self, game_state)) + 20
                 else:
                     bet = 500
             print("bet:" + bet)
