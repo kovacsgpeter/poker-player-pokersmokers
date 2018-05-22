@@ -30,17 +30,17 @@ class Player:
             has_twopair = self.has_2pairs(own_cards, self.get_community_cards(game_state))
             has_drill = self.has_drill(own_cards, self.get_community_cards(game_state))
             has_full = self.has_full(own_cards, self.get_community_cards(game_state))
-            if is_pair or has_twopair or has_drill or has_full :
+            if is_pair or has_twopair or has_drill or has_full or is_highcard:
                 bet= max( self.get_player_bets( game_state))+1
             if len(self.get_community_cards( game_state))>0:
                 if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(game_state)):
                     bet=self.all_in(game_state)
-
-            if is_same_suit or is_highcard:
-                if max(self.get_player_bets(game_state)) < 300:
-                    bet = max(self.get_player_bets(game_state)) + 20
-                else:
-                    bet = 0
+            #
+                #if is_same_suit or is_highcard:
+                    #if max(self.get_player_bets(game_state)) < 300:
+                # bet = max(self.get_player_bets(game_state)) + 20
+                    #else:
+            #bet = 0
             print("bet:" + str(bet))
             return bet
         except Exception as e:
