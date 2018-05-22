@@ -28,7 +28,7 @@ class Player:
             isHighcard = Player.is_highcard(own_cards)
             if isPair or isHighcard:
                 if max( Player.get_player_bets(game_state))>200:
-                    return max( Player.get_player_bets())+1
+                    return max( Player.get_player_bets(game_state))+1
                 else:
                     returnVal=200
 
