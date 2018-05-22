@@ -14,6 +14,7 @@ class Player:
         for player in game_state['players']:
             try:
                 bets.append(int(player['bet']))
+                print(bets)
                 return bets
             except KeyError:
                 pass
@@ -106,6 +107,8 @@ class Player:
 
         if cards.count(own_cards[0]) == 3 and cards.count(own_cards[1])==2:
             has_full = True
+        for card in community_cards:
+            if community_cards
 
 
 
