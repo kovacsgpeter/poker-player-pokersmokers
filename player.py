@@ -1,4 +1,5 @@
 import json
+import random
 class Player:
     VERSION = "trymajom"
     own_cards=[]
@@ -43,7 +44,7 @@ class Player:
             return bet
         except Exception as e:
             print(e)
-            return 567
+            return random.randint(89, 999)
 
     def showdown(self, game_state):
         pass
