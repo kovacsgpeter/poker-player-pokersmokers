@@ -35,6 +35,8 @@ class Player:
             if len(self.get_community_cards( game_state))>0:
                 if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(game_state)):
                     bet=self.all_in(game_state)
+                elif self.check_if_pair(self.get_own_cards(game_state)):
+                    bet=self.all_in(game_state)
                 else:
                     bet=0
             #
