@@ -1,6 +1,6 @@
 import json
 class Player:
-    VERSION = "Default Python folding player"
+    VERSION = "kuszoPanda"
 
     def get_own_cards(self, game_state):
         for player in game_state['players']:
