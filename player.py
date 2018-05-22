@@ -40,9 +40,8 @@ class Player:
 
             if len(self.get_community_cards( game_state))>0:
                 if is_pair or has_twopair or has_drill or has_full or is_highcard or has_hc:
-                    bet=self.all_in(game_state)
-                elif self.check_if_pair(self.get_own_cards(game_state)):
-                    bet=self.all_in(game_state)
+                    bet=max(self.get_player_bets(game_state))+1
+        
                 else:
                     bet=0
             #
