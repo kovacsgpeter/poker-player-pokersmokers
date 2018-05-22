@@ -23,11 +23,11 @@ class Player:
 
         try:
             returnVal = 0
-            own_cards = self.get_own_cards(game_state)
+            own_cards = Player.get_own_cards(game_state)
             isPair = Player.check_if_pair(own_cards)
-            isHighcard = self.is_highcard(own_cards)
+            isHighcard = Player.is_highcard(own_cards)
             if isPair or isHighcard:
-                if max( Player.get_player_bets())>200:
+                if max( Player.get_player_bets(game_state))>200:
                     return max( Player.get_player_bets())+1
                 else:
                     returnVal=200
