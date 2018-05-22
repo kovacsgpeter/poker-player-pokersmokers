@@ -18,33 +18,30 @@ class Player:
                 pass
 
     def betRequest(self, game_state):
-        try:
-            bet = 0
 
-            own_cards = Player.get_own_cards(game_state)
+        bet = 0
+        own_cards = Player.get_own_cards(game_state)
+        print("cards:" +own_cards)
+        is_pair = Player.check_if_pair(own_cards)
+        print("is_pair:" + is_pair)
+        is_highcard = Player.is_highcard(own_cards)
+        is_same_suit = Player.if_same_suit_in_hands(own_cards)
+        if is_pair or is_highcard:
+            if max(Player.get_player_bets(game_state))>200:
+                return max( Player.get_player_bets(game_state))+1
+            else:
+                bet=200
+        if len(Player.get_community_cards())>0:
+            if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
+                bet=max( Player.get_player_bets(game_state))+1
 
-            is_pair = Player.check_if_pair(own_cards)
-            is_highcard = Player.is_highcard(own_cards)
-            is_same_suit = Player.if_same_suit_in_hands(own_cards)
-            if is_pair or is_highcard:
-                if max(Player.get_player_bets(game_state))>200:
-                    return max( Player.get_player_bets(game_state))+1
-                else:
-                    bet=200
-            if len(Player.get_community_cards())>0:
-                if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
-                    bet=max( Player.get_player_bets(game_state))+1
-
-            if is_same_suit:
-                if max(Player.get_player_bets(game_state)) > 200:
-                    return max(Player.get_player_bets(game_state)) + 20
-                else:
-                    bet = 500
-
-            return bet
-        except Exception as e:
-            print(e)
-            return 567
+        if is_same_suit:
+            if max(Player.get_player_bets(game_state)) > 200:
+                return max(Player.get_player_bets(game_state)) + 20
+            else:
+                bet = 500
+        print("bet:" + bet)
+        return bet
 
     def showdown(self, game_state):
         pass
