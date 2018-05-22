@@ -44,7 +44,7 @@ class Player:
             return bet
         except Exception as e:
             print(e)
-            return random.randint(89, 999)
+            return 444
 
     def showdown(self, game_state):
         pass
@@ -76,7 +76,26 @@ class Player:
         return False
 
     def if_same_suit_in_hands(self, cards):
-        if cards[0]['suit'] == cards[1]['self']:
+        if cards[0]['suit'] == cards[1]['suit']:
+            return True
+        else:
+            return False
+
+    def has_drill(self, own_cards, community_cards):
+        cards = own_cards+community_cards
+        ret = False
+        for card in cards:
+            if cards.count(card)==3 and card in own_cards:
+                ret = True
+        return ret
+
+    def has_2pairs(self, own_cards, community_cards):
+        pairs = 0
+        for card in own_cards:
+            if community_cards.count(card)==2:
+                pairs+=1
+
+        if pairs==2:
             return True
         else:
             return False
@@ -85,4 +104,5 @@ class Player:
         for player in game_state['players']:
             if player['name']=="pokerSmokers":
                 return player['stack']
+
 
