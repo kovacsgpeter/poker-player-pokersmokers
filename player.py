@@ -1,6 +1,6 @@
 import json
 class Player:
-    VERSION = "nem kúszó majom"
+    VERSION = "logolo kiskutya"
     own_cards=[]
 
     def get_own_cards(self, game_state):
