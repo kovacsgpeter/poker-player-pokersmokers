@@ -10,32 +10,26 @@ class Player:
                 pass
 
     def betRequest(self, game_state):
-        try:
-            self.own_cards = self.get_own_cards(game_state)
 
-            if game_state['bet'] > 100:
-                return 0
-            else:
-                return 20
+        try:
+            returnVal = 0
+            self.own_cards = self.get_own_cards(game_state)
+            isPair = Player.check_if_pair(self.own_cards)
+            if isPair:
+                returnVal=200
+
+
+
+            return returnVal
         except:
             return 100
 
     def showdown(self, game_state):
         pass
 
-    def check_if_pair(self, game_state):
-        cards = []
-
-        for item in game_state['players']:
-            if item['name']=='pokerSmokers':
-                cards = item['hole_cards']
-
-        is_pair=False
-
-        if cards[0]==cards[1]:
-            is_pair=True
-        if is_pair:
-            return cards.values()[0]
+    def check_if_pair(cards):
+        if cards[0]['rank']==cards[1]['rank']:
+            return True
         else:
             return False
 
