@@ -4,12 +4,12 @@ class Player:
     VERSION = "trymajom"
     own_cards=[]
 
-    def get_own_cards(self, game_state):
+    def get_own_cards(game_state):
         for player in game_state['players']:
             if player['name']=="pokerSmokers":
                 return player['hole_cards']
 
-    def get_player_bets(self, game_state):
+    def get_player_bets(game_state):
         bets = list()
         for player in game_state['players']:
             try:
@@ -49,25 +49,25 @@ class Player:
     def showdown(self, game_state):
         pass
 
-    def check_if_pair(self, cards):
+    def check_if_pair(cards):
         if cards[0]['rank']==cards[1]['rank']:
             return True
         else:
             return False
 
-    def is_highcard(self, cards):
+    def is_highcard(cards):
         if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] or cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
             return True
         else:
             return False
 
-    def get_community_cards(self, game_state):
+    def get_community_cards(game_state):
         cards=[]
         for card in game_state["community_cards"]:
             cards.append(card)
         return cards
 
-    def check_if_have_pair_incommunity(self, own_cards, community_cards):
+    def check_if_have_pair_incommunity(own_cards, community_cards):
         for card in own_cards:
             if card in community_cards:
                 return True
@@ -75,7 +75,7 @@ class Player:
                 continue
         return False
 
-    def if_same_suit_in_hands(self, cards):
+    def if_same_suit_in_hands(cards):
         if cards[0]['suit'] == cards[1]['self']:
             return True
         else:
