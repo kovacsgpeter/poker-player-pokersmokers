@@ -21,26 +21,26 @@ class Player:
     def betRequest(self, game_state):
         try:
             bet = 0
-            own_cards = Player.get_own_cards(self, game_state)
+            own_cards = self.get_own_cards(self, game_state)
             print(own_cards)
-            is_pair = Player.check_if_pair(self, own_cards)
-            is_highcard = Player.is_highcard(self, own_cards)
-            is_same_suit = Player.if_same_suit_in_hands(self, own_cards)
+            is_pair = self.check_if_pair(self, own_cards)
+            is_highcard = self.is_highcard(self, own_cards)
+            is_same_suit = self.if_same_suit_in_hands(self, own_cards)
             if is_pair or is_highcard:
-                if max(Player.get_player_bets(self, game_state))>200:
-                    bet= max( Player.get_player_bets(self, game_state))+1
+                if max(self.get_player_bets(self, game_state))>200:
+                    bet= max( self.get_player_bets(self, game_state))+1
                 else:
                     bet=200
-            if len(Player.get_community_cards(self, game_state))>0:
-                if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards(self, game_state)):
-                    bet=max( Player.get_player_bets(self, game_state))+1
+            if len(self.get_community_cards(self, game_state))>0:
+                if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(self, game_state)):
+                    bet=max( self.get_player_bets(self, game_state))+1
 
             if is_same_suit:
-                if max(Player.get_player_bets(self, game_state)) > 200:
-                    bet = max(Player.get_player_bets(self, game_state)) + 20
+                if max(self.get_player_bets(self, game_state)) > 200:
+                    bet = max(self.get_player_bets(self, game_state)) + 20
                 else:
                     bet = 500
-            ##print("bet:" + bet)
+            print("bet:" + bet)
             return bet
         except Exception as e:
             print(e)
