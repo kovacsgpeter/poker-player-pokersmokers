@@ -21,7 +21,9 @@ class Player:
 
         bet = 0
         own_cards = Player.get_own_cards(game_state)
+        print("cards:" +own_cards)
         is_pair = Player.check_if_pair(own_cards)
+        print("is_pair:" + is_pair)
         is_highcard = Player.is_highcard(own_cards)
         is_same_suit = Player.if_same_suit_in_hands(own_cards)
         if is_pair or is_highcard:
@@ -38,7 +40,7 @@ class Player:
                 return max(Player.get_player_bets(game_state)) + 20
             else:
                 bet = 500
-
+        print("bet:" + bet)
         return bet
 
     def showdown(self, game_state):
