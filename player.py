@@ -40,7 +40,7 @@ class Player:
                     bet = max(Player.get_player_bets(self, game_state)) + 20
                 else:
                     bet = 500
-            print("bet:" + bet)
+            ##print("bet:" + bet)
             return bet
         except Exception as e:
             print(e)
