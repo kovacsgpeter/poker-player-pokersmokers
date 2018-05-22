@@ -7,7 +7,7 @@ class Player:
         for player in game_state['players']:
             if player['name']=="pokerSmokers":
                 return player['hole_cards']
-            
+
 
 
     def get_player_bets(self, game_state):
