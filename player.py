@@ -81,5 +81,8 @@ class Player:
         else:
             return False
 
-
+    def all_in(self,game_state):
+        for player in game_state['players']:
+            if player['name']=="pokerSmokers":
+                return player['stack']
 
