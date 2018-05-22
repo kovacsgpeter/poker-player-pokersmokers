@@ -21,25 +21,24 @@ class Player:
 
     def betRequest(self, game_state):
 
-        try:
-            returnVal = 0
-            own_cards = Player.get_own_cards(game_state)
-            isPair = Player.check_if_pair(own_cards)
-            isHighcard = Player.is_highcard(own_cards)
-            if isPair or isHighcard:
-                if max(Player.get_player_bets(game_state))>200:
-                    return max( Player.get_player_bets(game_state))+1
-                else:
-                    returnVal=200
-            if len(Player.get_community_cards())>0:
-                if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
-                    returnVal=max( Player.get_player_bets(game_state))+1
+        
+        returnVal = 0
+        own_cards = Player.get_own_cards(game_state)
+        isPair = Player.check_if_pair(own_cards)
+        isHighcard = Player.is_highcard(own_cards)
+        if isPair or isHighcard:
+            if max(Player.get_player_bets(game_state))>200:
+                return max( Player.get_player_bets(game_state))+1
+            else:
+                returnVal=200
+        if len(Player.get_community_cards())>0:
+            if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
+                returnVal=max( Player.get_player_bets(game_state))+1
 
 
 
-            return returnVal
-        except:
-            return 20
+        return returnVal
+
 
     def showdown(self, game_state):
         pass
