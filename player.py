@@ -14,11 +14,12 @@ class Player:
     def betRequest(self, game_state):
         try:
             self.own_cards = self.get_own_cards(game_state)
-            
+
+
             if game_state['bet'] > 100:
                 return 0
             else:
-                return 20
+                return 100
         except:
             return 100
 
