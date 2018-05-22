@@ -18,7 +18,7 @@ class Player:
                 return bets
             except KeyError:
                 pass
-            
+
     def betRequest(self, game_state):
 
         try:
@@ -31,6 +31,9 @@ class Player:
                     return max( Player.get_player_bets(game_state))+1
                 else:
                     returnVal=200
+            if len(self.get_community_cards())>0:
+                if self.check_if_have_pair_incommunity(self.own_cards,self.get_community_cards()):
+                    returnVal=300
 
 
 
@@ -53,8 +56,19 @@ class Player:
         else:
             return False
 
+    def get_community_cards(game_state):
+        cards=[]
+        for card in game_state["community_cards"]:
+            cards.append(card)
+        return cards
 
-
+    def check_if_have_pair_incommunity(self,owncards, community_cards):
+        for card in owncards:
+            if card in community_cards:
+                return True
+            else:
+                continue
+        return False
 
 
 
