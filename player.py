@@ -1,6 +1,6 @@
 import json
 class Player:
-    VERSION = "kuszoPanda"
+    VERSION = "kuszoKigyo"
     own_cards=[]
 
     def get_own_cards(self, game_state):
