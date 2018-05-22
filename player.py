@@ -1,6 +1,7 @@
 import json
 class Player:
-    VERSION = "Default Python folding player"
+    VERSION = "kuszoKigyo"
+    own_cards=[]
 
     def get_own_cards(self, game_state):
         for player in game_state['players']:
@@ -9,14 +10,27 @@ class Player:
             except KeyError:
                 pass
 
+    def get_player_bets(self, game_state):
+        bets = list()
+        for player in game_state['players']:
+            try:
+                bets.append(player['bet'])
+                return bets
+            except KeyError:
+                pass
+
     def betRequest(self, game_state):
 
         try:
             returnVal = 0
             own_cards = self.get_own_cards(game_state)
-            isPair = Player.check_if_pair(self.own_cards)
-            if isPair:
-                returnVal=200
+            isPair = Player.check_if_pair(own_cards)
+            isHighcard = self.is_highcard(own_cards)
+            if isPair or isHighcard:
+                if max( Player.get_player_bets())>200:
+                    return max( Player.get_player_bets())+1
+                else:
+                    returnVal=200
             if len(self.get_community_cards())>0:
                 if self.check_if_have_pair_incommunity(self.own_cards,self.get_community_cards()):
                     returnVal=300
@@ -25,13 +39,19 @@ class Player:
 
             return returnVal
         except:
-            return 100
+            return 657
 
     def showdown(self, game_state):
         pass
 
     def check_if_pair(cards):
         if cards[0]['rank']==cards[1]['rank']:
+            return True
+        else:
+            return False
+
+    def is_highcard(cards):
+        if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] or cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
             return True
         else:
             return False
