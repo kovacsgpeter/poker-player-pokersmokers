@@ -14,6 +14,7 @@ class Player:
         try:
             for player in game_state['players']:
                 bets.append(int(player['bet']))
+            print(bets)
             return bets
         except KeyError:
             pass
