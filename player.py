@@ -10,6 +10,15 @@ class Player:
             except KeyError:
                 pass
 
+    def get_player_bets(self, game_state):
+        bets = list()
+        for player in game_state['players']:
+            try:
+                bets.append(player['bet'])
+                return bets
+            except KeyError:
+                pass
+            
     def betRequest(self, game_state):
 
         try:
