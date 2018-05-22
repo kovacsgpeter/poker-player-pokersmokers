@@ -45,6 +45,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         self.wfile.write(response)
 
+
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
     httpd = server_class((HOST_NAME, PORT_NUMBER), PlayerService)
