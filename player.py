@@ -5,10 +5,10 @@ class Player:
 
     def get_own_cards(self, game_state):
         for player in game_state['players']:
-            try:
+            if player['name']=="pokerSmokers":
                 return player['hole_cards']
-            except KeyError:
-                pass
+            
+
 
     def get_player_bets(self, game_state):
         bets = list()
@@ -21,7 +21,7 @@ class Player:
 
     def betRequest(self, game_state):
 
-        
+
         returnVal = 0
         own_cards = Player.get_own_cards(game_state)
         isPair = Player.check_if_pair(own_cards)
