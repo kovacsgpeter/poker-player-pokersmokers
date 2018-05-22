@@ -1,6 +1,6 @@
 import json
 class Player:
-    VERSION = "kuszoKigyo"
+    VERSION = "kuszoGorilla"
     own_cards=[]
 
     def get_own_cards(self, game_state):
@@ -33,7 +33,7 @@ class Player:
                     returnVal=200
             if len(self.get_community_cards())>0:
                 if self.check_if_have_pair_incommunity(self.own_cards,self.get_community_cards()):
-                    returnVal=300
+                    returnVal=max( Player.get_player_bets(game_state))+1
 
 
 
