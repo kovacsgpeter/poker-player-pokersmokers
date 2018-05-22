@@ -32,18 +32,19 @@ class Player:
             has_full = self.has_full(own_cards, self.get_community_cards(game_state))
             has_hc = self.has_highcard(own_cards)
 
-            if has_hc and max(self.get_player_bets(game_state))<150:
-                bet=max(self.get_player_bets(game_state))
 
-            if is_pair and has_hc:
-                bet = max( self.get_player_bets( game_state))+200
 
             if len(self.get_community_cards( game_state))>0:
                 if is_pair or has_twopair or has_drill or has_full or is_highcard or has_hc:
                     bet=max(self.get_player_bets(game_state))+1
-        
+
                 else:
-                    bet=0
+                    if has_hc and max(self.get_player_bets(game_state)) < 150:
+                        bet = max(self.get_player_bets(game_state))
+
+                    if is_pair and has_hc:
+                        bet = max(self.get_player_bets(game_state)) + 200
+                    
             #
                 #if is_same_suit or is_highcard:
                     #if max(self.get_player_bets(game_state)) < 300:
