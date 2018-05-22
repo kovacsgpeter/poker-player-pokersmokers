@@ -39,6 +39,8 @@ class Player:
             if len(self.get_community_cards( game_state))>0:
                 if self.check_if_have_pair_incommunity(own_cards, self.get_community_cards(game_state)):
                     bet=self.all_in(game_state)
+                else:
+                    bet=0
             #
                 #if is_same_suit or is_highcard:
                     #if max(self.get_player_bets(game_state)) < 300:
