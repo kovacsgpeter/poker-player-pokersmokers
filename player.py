@@ -36,7 +36,7 @@ class Player:
 
             return returnVal
         except:
-            return 657
+            return 20
 
     def showdown(self, game_state):
         pass
