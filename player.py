@@ -35,10 +35,12 @@ class Player:
             return False
 
     def is_highcard(cards):
-        if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] and cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
+        if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] or cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
             return True
         else:
             return False
+
+
 
 
 
