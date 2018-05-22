@@ -40,7 +40,7 @@ class Player:
                     bet = max(self.get_player_bets(game_state)) + 20
                 else:
                     bet = 500
-            print("bet:" + bet)
+            print("bet:" + str(bet))
             return bet
         except Exception as e:
             print(e)
@@ -99,6 +99,22 @@ class Player:
             return True
         else:
             return False
+
+
+    def has_full(self, own_cards, community_cards):
+        cards = own_cards + community_cards
+        has_full = False
+
+        if cards.count(own_cards[0]) == 3 and cards.count(own_cards[1])==2:
+            has_full = True
+
+
+
+
+
+        return has_full
+
+
 
     def all_in(self,game_state):
         for player in game_state['players']:
