@@ -20,24 +20,23 @@ class Player:
     def betRequest(self, game_state):
         try:
             bet = 0
-            own_cards = Player.get_own_cards(game_state)
+            own_cards = Player.get_own_cards(self, game_state)
             print("cards:" +own_cards)
-            is_pair = Player.check_if_pair(own_cards)
-            print("is_pair:" + is_pair)
-            is_highcard = Player.is_highcard(own_cards)
-            is_same_suit = Player.if_same_suit_in_hands(own_cards)
+            is_pair = Player.check_if_pair(self, own_cards)
+            is_highcard = Player.is_highcard(self, own_cards)
+            is_same_suit = Player.if_same_suit_in_hands(self, own_cards)
             if is_pair or is_highcard:
-                if max(Player.get_player_bets(game_state))>200:
-                    return max( Player.get_player_bets(game_state))+1
+                if max(Player.get_player_bets(self, game_state))>200:
+                    return max( Player.get_player_bets(self, game_state))+1
                 else:
                     bet=200
-            if len(Player.get_community_cards())>0:
-                if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards()):
-                    bet=max( Player.get_player_bets(game_state))+1
+            if len(Player.get_community_cards(self, game_state))>0:
+                if Player.check_if_have_pair_incommunity(own_cards, Player.get_community_cards(self, game_state)):
+                    bet=max( Player.get_player_bets(self, game_state))+1
 
             if is_same_suit:
-                if max(Player.get_player_bets(game_state)) > 200:
-                    return max(Player.get_player_bets(game_state)) + 20
+                if max(Player.get_player_bets(self, game_state)) > 200:
+                    return max(Player.get_player_bets(self, game_state)) + 20
                 else:
                     bet = 500
             print("bet:" + bet)
@@ -49,19 +48,19 @@ class Player:
     def showdown(self, game_state):
         pass
 
-    def check_if_pair(cards):
+    def check_if_pair(self, cards):
         if cards[0]['rank']==cards[1]['rank']:
             return True
         else:
             return False
 
-    def is_highcard(cards):
+    def is_highcard(self, cards):
         if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] or cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
             return True
         else:
             return False
 
-    def get_community_cards(game_state):
+    def get_community_cards(self, game_state):
         cards=[]
         for card in game_state["community_cards"]:
             cards.append(card)
@@ -75,7 +74,7 @@ class Player:
                 continue
         return False
 
-    def if_same_suit_in_hands(cards):
+    def if_same_suit_in_hands(self, cards):
         if cards[0]['suit'] == cards[1]['self']:
             return True
         else:
