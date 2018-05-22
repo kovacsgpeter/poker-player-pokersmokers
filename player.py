@@ -1,6 +1,7 @@
 import json
 class Player:
     VERSION = "kuszoPanda"
+    own_cards=[]
 
     def get_own_cards(self, game_state):
         for player in game_state['players']:
@@ -13,9 +14,9 @@ class Player:
 
         try:
             returnVal = 0
-            self.own_cards = self.get_own_cards(game_state)
-            isPair = Player.check_if_pair(self.own_cards)
-            isHighcard = self.is_highcard(self.own_cards)
+            own_cards = self.get_own_cards(game_state)
+            isPair = Player.check_if_pair(own_cards)
+            isHighcard = self.is_highcard(own_cards)
             if isPair or isHighcard:
                 returnVal=200
 
@@ -23,7 +24,7 @@ class Player:
 
             return returnVal
         except:
-            return 100
+            return 657
 
     def showdown(self, game_state):
         pass
