@@ -10,7 +10,7 @@ class Player:
                 return player['hole_cards']
 
     def get_player_bets(self, game_state):
-        bets = list()
+        bets = []
         try:
             for player in game_state['players']:
                 bets.append(int(player['bet']))
