@@ -85,15 +85,28 @@ class Player:
     def has_drill(self, own_cards, community_cards):
         cards = own_cards+community_cards
         ret = False
+        cardv = []
         for card in cards:
-            if cards.count(card)==3 and card in own_cards:
+            cardv.append( card.values())
+
+
+        for card in cardv:
+            if cardv.count(card)==3 and card in own_cards:
                 ret = True
         return ret
 
     def has_2pairs(self, own_cards, community_cards):
         pairs = 0
+        own_cardsv = []
         for card in own_cards:
-            if community_cards.count(card)==2:
+            own_cardsv.append(card.values())
+
+        comm_cardsv = []
+        for card in community_cards:
+            comm_cardsv.append(card.values())
+
+        for card in own_cardsv:
+            if comm_cardsv.count(card)==2:
                 pairs+=1
 
         if pairs==2:
@@ -103,14 +116,30 @@ class Player:
 
 
     def has_full(self, own_cards, community_cards):
-        cards = own_cards + community_cards
+
         has_full = False
 
-        if cards.count(own_cards[0]) == 3 and cards.count(own_cards[1])==2:
-            has_full = True
+        cards = own_cards + community_cards
+
+        cardv = []
+        for card in cards:
+            cardv.append(card.values())
+
+        own_cardsv = []
+        for card in own_cards:
+            own_cardsv.append(card.values())
+
+        comm_cardsv = []
         for card in community_cards:
-            if community_cards.count(card) == 3:
-                if own_cards[1]==own_cards[2]:
+            comm_cardsv.append(card.values())
+
+
+
+        if cardv.count(own_cardsv[0]) == 3 and cardv.count(own_cardsv[1])==2:
+            has_full = True
+        for card in comm_cardsv:
+            if comm_cardsv.count(card) == 3:
+                if own_cardsv[1]==own_cardsv[2]:
                     has_full=True
 
 
