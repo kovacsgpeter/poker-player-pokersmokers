@@ -30,6 +30,10 @@ class Player:
             has_twopair = self.has_2pairs(own_cards, self.get_community_cards(game_state))
             has_drill = self.has_drill(own_cards, self.get_community_cards(game_state))
             has_full = self.has_full(own_cards, self.get_community_cards(game_state))
+            has_hc = self.has_highcard(own_cards)
+            if has_hc and max(self.get_player_bets(game_state))<150:
+                bet=max(self.get_player_bets(game_state))
+
             if is_pair or has_twopair or has_drill or has_full or is_highcard:
                 bet= max( self.get_player_bets( game_state))+1
             if len(self.get_community_cards( game_state))>0:
@@ -58,6 +62,12 @@ class Player:
 
     def is_highcard(self, cards):
         if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] and cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
+            return True
+        else:
+            return False
+
+    def has_highcard(self, cards):
+        if cards[0]['rank'] in ["10", "J", "Q", "K", "A"] or cards[1]['rank'] in ["10", "J", "Q", "K", "A"]:
             return True
         else:
             return False
