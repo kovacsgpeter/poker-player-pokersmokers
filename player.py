@@ -1,10 +1,10 @@
-import json;
+import json
 class Player:
     VERSION = "Default Python folding player"
 
     def betRequest(self, game_state):
-        gamestat = json.load(game_state);
-        if gamestat['pot']>100:
+
+        if game_state['pot']>100:
             return 0
         else:
             return 20
